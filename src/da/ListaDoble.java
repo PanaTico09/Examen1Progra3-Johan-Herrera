@@ -36,9 +36,6 @@ public class ListaDoble {
      * @return cabeza == null
      */
     public boolean estaVacio() {
-        if (size == 0) {
-
-        }
         return cabeza == null;
     }
 
