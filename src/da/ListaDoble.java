@@ -188,7 +188,7 @@ public class ListaDoble {
         Nodo nuevo = new Nodo(miJugador);
         if (estaVacio()) {                                                      //Verifica si esta vacio. De ser asi lo añade.   
             agregarAlInicio(edad, nombre, seleccion, posicion, convocado, null);
-        } else if (convertirInt(posicion) < convertirInt(cabeza.getDatos().getPosicion())) {         //Verifica si el jugador es menor que el primero en la lista. De ser asi lo añade.
+        } else if (convertirInt(posicion) < convertirInt(cabeza.getDatos().getPosicion())) {//Verifica si el jugador es de una posicion "menor" que el primero en la lista. De ser asi lo añade.
             nuevo.setSiguiente(cabeza);
             cabeza.setAnterior(nuevo);
             cabeza = nuevo;
@@ -197,7 +197,7 @@ public class ListaDoble {
             Nodo aux = cabeza;
             Nodo aux2 = cabeza.getSiguiente();
             while (aux2 != null) {
-                if (convertirInt(posicion) < convertirInt(aux2.getDatos().getPosicion())) {          //Verifica si es menor que el siguiente de ser asi termina el ciclo.        
+                if (convertirInt(posicion) < convertirInt(aux2.getDatos().getPosicion())) { //Verifica si el jugador es de una posicion "menor" que el siguiente de ser asi termina el ciclo.        
                     break;
                 }
                 aux = aux2;
