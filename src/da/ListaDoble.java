@@ -169,7 +169,7 @@ public class ListaDoble {
             size++;
         }
     }
-
+    
     /**
      * <h1>agregarPorPosicion</h1>
      * Verifica si el jugador es un Portero de ser asi lo añade al inicio. Sino
@@ -183,15 +183,51 @@ public class ListaDoble {
      * @param convocado
      * @param marca
      */
-    public void agregarPorPosicion(int edad, String nombre, String seleccion, String posicion, boolean convocado , String marca) {
+    public void agregarPorPosicion(int edad, String nombre, String seleccion, String posicion, boolean convocado, String marca) {
         Jugador miJugador = new Jugador(edad, nombre, seleccion, posicion, convocado, marca);
-
-        if (miJugador.getPosicion().equalsIgnoreCase("Portero")) {
-            agregarAlInicio(edad, nombre, seleccion, posicion, convocado, marca);
-        } else if (miJugador.getPosicion().equalsIgnoreCase("Defensa") || miJugador.getPosicion().equalsIgnoreCase("Mediocampista") || miJugador.getPosicion().equalsIgnoreCase("Delantero")) {
-            agregar(edad, nombre, seleccion, posicion, convocado, marca);
+        Nodo nuevo = new Nodo(miJugador);
+        if (estaVacio()) {                                                      //Verifica si esta vacio. De ser asi lo añade.   
+            agregarAlInicio(edad, nombre, seleccion, posicion, convocado, null);
+        } else if (convertirInt(posicion) < convertirInt(cabeza.getDatos().getPosicion())) {         //Verifica si el jugador es menor que el primero en la lista. De ser asi lo añade.
+            nuevo.setSiguiente(cabeza);
+            cabeza.setAnterior(nuevo);
+            cabeza = nuevo;
+            size++;
+        } else {
+            Nodo aux = cabeza;
+            Nodo aux2 = cabeza.getSiguiente();
+            while (aux2 != null) {
+                if (convertirInt(posicion) < convertirInt(aux2.getDatos().getPosicion())) {          //Verifica si es menor que el siguiente de ser asi termina el ciclo.        
+                    break;
+                }
+                aux = aux2;
+                aux2 = aux2.getSiguiente();
+            }
+            nuevo.setSiguiente(aux.getSiguiente());                             //Lo añade.    
+            aux.setSiguiente(nuevo);
+            nuevo.setAnterior(aux);
+            size++;
         }
     }
+   
+    public int convertirInt(String posicion) {
+        int pos = 0;
+        switch (posicion) {
+            case "Portero":
+                pos = 0;
+                break;
+            case "Defensa":
+                pos = 1;
+                break;
+            case "Mediocampista":
+                pos = 2;
+                break;
+            case "Delantero":
+                pos = 3;
+                break;
+        }  
+        return pos;
+    }                        
 
     /**
      * <h1> imprimirAlineacion</h1>
@@ -335,7 +371,8 @@ public class ListaDoble {
             Jugador miJugador = new Jugador(aux.getDatos().getEdad(), aux.getDatos().getNombre(), aux.getDatos().getSeleccion(), 
                                             aux.getDatos().getPosicion(), aux.getDatos().isConvocados(), aux.getDatos().getMarca());
             if (aux.getDatos().isConvocados() == true && aux.getDatos().getSeleccion().equalsIgnoreCase("España")) {
-                listaOrdenada.agregarPorPosicion(miJugador.getEdad(), miJugador.getNombre(), miJugador.getSeleccion(), miJugador.getPosicion(), miJugador.isConvocados(), miJugador.getMarca());
+                listaOrdenada.agregarPorPosicion(miJugador.getEdad(), miJugador.getNombre(), miJugador.getSeleccion(), 
+                                                 miJugador.getPosicion(), miJugador.isConvocados(), miJugador.getMarca());
             }
             aux = aux.getSiguiente();
         }

@@ -65,7 +65,7 @@ public class ExamenProgra3 {
 
         System.out.println("Lista de Titulares Ordenada por Edad (Entra Pinilla)\n" + "Equipo de Chile: \n" + titularesPorEdad.toString());
         
-        System.out.println(jugadoresChile.imprimirAlineacion(1, 4, 3, 3));
+        System.out.println(jugadoresChile.imprimirAlineacion(1, 5, 3, 2));
 
         System.out.println("Lista de Titulares Ordenada por Posicion \n" + "Equipo de España: \n" + ordenadoporPosicion.imprimirMarca());
 
