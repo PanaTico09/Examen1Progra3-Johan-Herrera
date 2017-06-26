@@ -171,7 +171,7 @@ public class ListaDoble {
     }
 
     /**
-     * <h1>agregarPorPosicion<h1>
+     * <h1>agregarPorPosicion</h1>
      * Verifica si el jugador es un Portero de ser asi lo añade al inicio. Sino
      * verifica si el jugador es un defensa, mediocampista o delantero y lo
      * añade como corresponde.
